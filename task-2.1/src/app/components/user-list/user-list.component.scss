@@ -1,0 +1,182 @@
+:host {
+  display: block;
+  width: 100%;
+}
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+// Table styles
+table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: #fff;
+  font-size: 1rem;
+}
+
+thead th {
+  background: #f8fafc;
+  color: #6b7280;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 0.9rem 0.7rem;
+  border-bottom: 1px solid #e5e7eb;
+  text-align: left;
+}
+
+tbody td {
+  padding: 0.85rem 0.7rem;
+  border-bottom: 1px solid #f1f5f9;
+  vertical-align: middle;
+  color: #222;
+}
+
+tbody tr:last-child td {
+  border-bottom: none;
+}
+
+tbody tr {
+  transition: background 0.15s;
+}
+
+tbody tr:hover {
+  background: #f6fafd;
+}
+
+a {
+  color: #2563eb;
+  text-decoration: underline;
+}
+
+button {
+  background: none;
+  border: none;
+  color: #ef4444;
+  font-size: 1.1rem;
+  cursor: pointer;
+  padding: 0;
+  transition: color 0.15s;
+}
+button:hover {
+  color: #b91c1c;
+}
+
+// Modal styles
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
+}
+
+.modal-content {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+  max-width: 420px;
+  width: 100%;
+  padding: 2rem 2rem 1.5rem 2rem;
+  position: relative;
+  animation: fadeIn 0.2s;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.25rem;
+}
+
+.modal-header h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.modal-close {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: #444;
+  cursor: pointer;
+}
+
+.modal-email {
+  color: #2563eb;
+  text-decoration: underline;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  display: inline-block;
+}
+
+hr {
+  margin: 1rem 0;
+  border: none;
+  border-top: 1px solid #eee;
+}
+
+.modal-section {
+  margin-bottom: 1.25rem;
+}
+
+.modal-section-title {
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.modal-map {
+  color: #2563eb;
+  font-size: 0.95rem;
+  margin-top: 0.25rem;
+  display: inline-block;
+}
+
+@media (max-width: 600px) {
+  .modal-content {
+    padding: 1rem;
+    max-width: 98vw;
+  }
+}
+
+// Animations
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+// Responsive styles
+@media (max-width: 900px) {
+  .container {
+    padding: 0 0.5rem;
+  }
+  table {
+    font-size: 0.97rem;
+  }
+  thead th, tbody td {
+    padding-left: 0.4rem;
+    padding-right: 0.4rem;
+  }
+} 

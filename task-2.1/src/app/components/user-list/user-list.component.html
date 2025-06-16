@@ -1,0 +1,85 @@
+<div class="container mx-auto px-4 py-8">
+    <h1 class="text-3xl font-bold mb-6">User Management</h1>
+
+    <div class="overflow-x-auto">
+        <table class="min-w-full bg-white rounded-lg shadow">
+            <thead class="bg-gray-100">
+                <tr>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Name/Email</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Address
+                    </th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Phone
+                    </th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Website
+                    </th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Company
+                    </th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions
+                    </th>
+                </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-200">
+                @for (user of users(); track user.id) {
+                <tr class="hover:bg-gray-50 cursor-pointer" (click)="onUserClick(user)">
+                    <td class="px-6 py-4">
+                        <div class="text-sm font-medium text-gray-900">{{ user.name }}</div>
+                        <div class="text-sm text-gray-500">{{ user.email }}</div>
+                    </td>
+                    <td class="px-6 py-4">
+                        <div class="text-sm text-gray-900">{{ user.address.street }}</div>
+                        <div class="text-sm text-gray-500">{{ user.address.city }}</div>
+                    </td>
+                    <td class="px-6 py-4 text-sm text-gray-500">{{ user.phone }}</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">{{ user.website }}</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">{{ user.company.name }}</td>
+                    <td class="px-6 py-4 text-sm">
+                        <button class="text-red-600 hover:text-red-900" (click)="onDeleteUser(user.id, $event)">
+                            Delete
+                        </button>
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Modal Overlay -->
+    @if (showModal && selectedUser) {
+    <div class="modal-overlay" (click)="closeModal()">
+        <div class="modal-content" (click)="$event.stopPropagation()">
+            <div class="modal-header">
+                <h2>{{ selectedUser.name }}</h2>
+                <button class="modal-close" (click)="closeModal()">&#10005;</button>
+            </div>
+            <a class="modal-email" [href]="'mailto:' + selectedUser.email">{{ selectedUser.email }}</a>
+            <hr />
+            <div class="modal-section">
+                <div class="modal-section-title">Address</div>
+                <div>
+                    {{ selectedUser.address.street }}, {{ selectedUser.address.suite }}<br />
+                    {{ selectedUser.address.city }}, {{ selectedUser.address.zipcode }}
+                </div>
+                <a class="modal-map" target="_blank"
+                    [href]="'https://www.google.com/maps?q=' + selectedUser.address.geo.lat + ',' + selectedUser.address.geo.lng">
+                    <span style="color: #e53e3e;">&#128205;</span> View on map
+                </a>
+            </div>
+            <div class="modal-section">
+                <div class="modal-section-title">Contact</div>
+                <div><b>Phone:</b> {{ selectedUser.phone }}</div>
+                <div>
+                    <b>Website:</b>
+                    <a [href]="'http://' + selectedUser.website" target="_blank">{{ selectedUser.website }}</a>
+                </div>
+            </div>
+            <div class="modal-section">
+                <div class="modal-section-title">Company</div>
+                <div><b>Name:</b> {{ selectedUser.company.name }}</div>
+                <div><b>Catchphrase:</b> {{ selectedUser.company.catchPhrase }}</div>
+                <div><b>Business:</b> {{ selectedUser.company.bs }}</div>
+            </div>
+        </div>
+    </div>
+    }
+</div>
